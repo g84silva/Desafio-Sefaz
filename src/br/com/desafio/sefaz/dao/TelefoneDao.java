@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import br.com.desafio.sefaz.model.Telefone;
+import br.com.desafio.sefaz.model.Usuario;
 import br.com.desafio.sefaz.util.ConnectionDB;
 
 public class TelefoneDao {
@@ -70,6 +71,24 @@ public class TelefoneDao {
 		}finally {
 			em.close();
 		}
+	}
+	
+	public Telefone procurarPorId(long id) {
+		
+		Telefone telefone = null;
+		
+		try {
+			
+			telefone = em.find(Telefone.class, id);
+			
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+			System.out.println("Search: " + e.getMessage());
+		} finally {
+			em.close();
+		}
+		
+		return telefone;
 	}
 	
 	@SuppressWarnings("unchecked")

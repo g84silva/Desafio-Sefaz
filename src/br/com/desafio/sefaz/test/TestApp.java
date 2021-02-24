@@ -1,16 +1,16 @@
 package br.com.desafio.sefaz.test;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import br.com.desafio.sefaz.dao.UsuarioDao;
-import br.com.desafio.sefaz.model.Telefone;
-import br.com.desafio.sefaz.model.Usuario;
+//import java.util.ArrayList;
+//import java.util.List;
+//
+//import br.com.desafio.sefaz.dao.UsuarioDao;
+//import br.com.desafio.sefaz.model.Telefone;
+//import br.com.desafio.sefaz.model.Usuario;
 
 public class TestApp {
 	public static void main(String[] args) {
-		List<Usuario> usuarios = new ArrayList<>();
-		List<Telefone> telefones = new ArrayList<>();
+//		List<Usuario> usuarios = new ArrayList<>();
+//		List<Telefone> telefones = new ArrayList<>();
 		
 //		Usuario usu2 = new Usuario();
 //		usu2.setNome("Nelson Nede");
@@ -26,16 +26,15 @@ public class TestApp {
 //		tel3.setTipo("Residencial");
 //		telefones.add(tel3);
 //		usu2.setTelefones(telefones);
-		UsuarioDao usuDao = new UsuarioDao();
+//		UsuarioDao usuDao = new UsuarioDao();
 //		usuDao.inserir(usu2);
 		
 //		Usuario usu1 = new Usuario();
 //		usu1.setId(1);
 //		usu1.setNome("Creuza Josefa");
 //		usu1.setEmail("CJosefa@gmail.com");
-		usuDao.excluir(2);
+//		usuDao.excluir(2);
 		
-//		System.out.println(usu1.toString());
 		
 	}
 
