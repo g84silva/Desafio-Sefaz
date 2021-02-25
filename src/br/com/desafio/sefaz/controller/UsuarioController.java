@@ -15,7 +15,7 @@ import br.com.desafio.sefaz.dao.UsuarioDao;
 import br.com.desafio.sefaz.model.Usuario;
 import br.com.desafio.sefaz.util.Constantes;
 
-@WebServlet("/usuario")
+@WebServlet("/usuario/*")
 public class UsuarioController extends HttpServlet {
 	private UsuarioDao usuarioDao;
 	private static final long serialVersionUID = 1L;
@@ -63,14 +63,14 @@ public class UsuarioController extends HttpServlet {
 	}
 
 	private void excluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
-		int id = Integer.parseInt(request.getParameter(Constantes.ID_COL_NAME));
+		long id = Integer.parseInt(request.getParameter(Constantes.ID_COL_NAME));
 		usuarioDao.excluir(id);
 		response.sendRedirect(request.getContextPath());
 
 	}
 
 	private void atualizar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
-		int id = Integer.parseInt(request.getParameter(Constantes.ID_COL_NAME));
+		long id = Integer.parseInt(request.getParameter(Constantes.ID_COL_NAME));
 		String nome = request.getParameter(Constantes.NAME_COL_NAME);
 		String email = request.getParameter(Constantes.EMAIL_COL_NAME);
 
@@ -86,10 +86,10 @@ public class UsuarioController extends HttpServlet {
 
 	private void editform(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter(Constantes.ID_COL_NAME));
+		long id = Integer.parseInt(request.getParameter(Constantes.ID_COL_NAME));
 		Usuario usuarioSelecionado = usuarioDao.procurarPorId(id);
 		request.setAttribute("usuario", usuarioSelecionado);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("cliente-form.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("usuarioadd-form.jsp");
 		dispatcher.forward(request, response);
 
 	}
@@ -107,7 +107,7 @@ public class UsuarioController extends HttpServlet {
 
 	private void addform(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("cliente-form.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("usuarioadd-form.jsp");
 		dispatcher.forward(request, response);
 
 	}
@@ -116,7 +116,7 @@ public class UsuarioController extends HttpServlet {
 			throws SQLException, ServletException, IOException {
 		List<Usuario> usuarios = usuarioDao.listarTodos();
 		request.setAttribute("usuarios", usuarios);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("cliente-list.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("usuario-list.jsp");
 		dispatcher.forward(request, response);
 
 	}

@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import br.com.desafio.sefaz.model.Telefone;
-import br.com.desafio.sefaz.model.Usuario;
 import br.com.desafio.sefaz.util.ConnectionDB;
 
 public class TelefoneDao {
@@ -98,8 +97,10 @@ public class TelefoneDao {
 		
 		try {
 			
-			telefones = em.createQuery("from Telefone WHERE usuario_id = :usuario_id").getResultList();
-			
+			telefones = em.createQuery("from Telefone WHERE usuario_id = :usuario_id")
+					.setParameter("usuario_id", usuarioId)
+					.getResultList();
+				
 		} catch (Exception e) {
 			em.getTransaction().rollback();
 			System.out.println("List: " + e.getMessage());

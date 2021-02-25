@@ -25,8 +25,6 @@ public class UsuarioDao {
 		} catch (Exception e) {
 			em.getTransaction().rollback();
 			System.out.println("Insert: " + e.getMessage());
-		} finally {
-			em.close();
 		}
 	}
 	
@@ -34,21 +32,19 @@ public class UsuarioDao {
 		
 		try {
 
-			Usuario usuarioAtualizado = em.find(Usuario.class, usuario.getId());
+//			Usuario usuarioAtualizado = em.find(Usuario.class, usuario.getId());
 
-			usuarioAtualizado.setNome(usuario.getNome());
-			usuarioAtualizado.setEmail(usuario.getEmail());
+//			usuarioAtualizado.setNome(usuario.getNome());
+//			usuarioAtualizado.setEmail(usuario.getEmail());
 //			usuarioAtualizado.setTelefones(usuario.getTelefones());
 
 			em.getTransaction().begin();
-			em.merge(usuarioAtualizado);
+			em.merge(usuario);
 			em.getTransaction().commit();
 
 		} catch (Exception e) {
 			em.getTransaction().rollback();
 			System.out.println("Upadate: " + e.getMessage());
-		} finally {
-			em.close();
 		}
 	}
 	
@@ -59,15 +55,13 @@ public class UsuarioDao {
 			em.getTransaction().begin();
 			
 			Usuario usuario = em.find(Usuario.class, id);
-			em.remove(usuario);
 			
+			em.remove(usuario);
 			em.getTransaction().commit();
 			
 		} catch (Exception e) {
 			em.getTransaction().rollback();
 			System.out.println("Delete: " + e.getMessage());
-		}finally {
-			em.close();
 		}
 	}
 	
@@ -77,13 +71,14 @@ public class UsuarioDao {
 		
 		try {
 			
+			em.getTransaction().begin();
+			
 			usuario = em.find(Usuario.class, id);
 			
+			em.getTransaction().commit();
 		} catch (Exception e) {
 			em.getTransaction().rollback();
 			System.out.println("Search: " + e.getMessage());
-		} finally {
-			em.close();
 		}
 		
 		return usuario;
@@ -95,15 +90,13 @@ public class UsuarioDao {
 		List<Usuario> usuarios = null;
 		
 		try {
-			
+			em.getTransaction().begin();
 			usuarios = em.createQuery("from Usuario").getResultList();
-			
+			em.getTransaction().commit();
 		} catch (Exception e) {
 			em.getTransaction().rollback();
 			System.out.println("List: " + e.getMessage());
-		} finally {
-			em.close();
-		}
+		} 
 		
 		return usuarios;
 	}
