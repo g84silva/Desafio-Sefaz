@@ -42,9 +42,11 @@ public class UsuarioController extends HttpServlet {
 		try {
 
 			if (acao == null || acao.isEmpty()) {
-				listar(request, response);
+				login(request, response);
 			} else if (acao.equalsIgnoreCase(Constantes.NEW_ACTION)) {
 				addform(request, response);
+			} else if (acao.equalsIgnoreCase(Constantes.VALIDATE_ACTION)) {
+				autenticar(request, response);
 			} else if (acao.equalsIgnoreCase(Constantes.INSERT_ACTION)) {
 				inserir(request, response);
 			} else if (acao.equalsIgnoreCase(Constantes.EDIT_ACTION)) {
@@ -62,11 +64,29 @@ public class UsuarioController extends HttpServlet {
 		}
 	}
 
+	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+		dispatcher.forward(request, response);
+	}
+
+	private void autenticar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String nome = request.getParameter(Constantes.NAME_COL_NAME);
+		String email = request.getParameter(Constantes.EMAIL_COL_NAME);
+		
+		if(usuarioDao.validar(nome, email)) {
+			List<Usuario> usuarios = usuarioDao.listarTodos();
+			request.setAttribute("usuarios", usuarios);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("usuario-list.jsp");
+			dispatcher.forward(request, response);
+		} else {
+			System.out.println("Não foi possível efetuar o login!");
+		}
+	}
+
 	private void excluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
 		long id = Integer.parseInt(request.getParameter(Constantes.ID_COL_NAME));
 		usuarioDao.excluir(id);
 		response.sendRedirect(request.getContextPath());
-
 	}
 
 	private void atualizar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
@@ -81,7 +101,6 @@ public class UsuarioController extends HttpServlet {
 
 		usuarioDao.atualizar(usuario);
 		response.sendRedirect(request.getContextPath());
-
 	}
 
 	private void editform(HttpServletRequest request, HttpServletResponse response)
@@ -91,7 +110,6 @@ public class UsuarioController extends HttpServlet {
 		request.setAttribute("usuario", usuarioSelecionado);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("usuario-form.jsp");
 		dispatcher.forward(request, response);
-
 	}
 
 	private void inserir(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
@@ -109,7 +127,6 @@ public class UsuarioController extends HttpServlet {
 			throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("usuario-form.jsp");
 		dispatcher.forward(request, response);
-
 	}
 
 	private void listar(HttpServletRequest request, HttpServletResponse response)
@@ -118,7 +135,5 @@ public class UsuarioController extends HttpServlet {
 		request.setAttribute("usuarios", usuarios);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("usuario-list.jsp");
 		dispatcher.forward(request, response);
-
 	}
-
 }

@@ -8,7 +8,8 @@ public class Constantes {
 	public static final String DELETE_ACTION = "excluir";
 	public static final String EDIT_ACTION = "editar";
 	public static final String UPDATE_ACTION = "atualizar";
-	
+	public static final String VALIDATE_ACTION = "autenticar";
+
 	public static final String ID_COL_NAME = "id";
 	public static final String NAME_COL_NAME = "nome";
 	public static final String EMAIL_COL_NAME = "email";

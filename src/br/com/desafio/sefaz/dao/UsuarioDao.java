@@ -100,5 +100,26 @@ public class UsuarioDao {
 		
 		return usuarios;
 	}
+
+	public boolean validar(String nome, String email) {
+		Usuario usuario = null;
+		
+		try {
+			em.getTransaction().begin();
+			usuario = (Usuario) em.createQuery("FROM Usuario WHERE nome = :nome")
+					.setParameter("nome", nome)
+					.getSingleResult();
+			em.getTransaction().commit();
+			
+			if (usuario != null && usuario.getEmail().equals(email)) {
+				return true;
+			}
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+			System.out.println("List: " + e.getMessage());
+		}
+		
+		return false;
+	}
 	
 }

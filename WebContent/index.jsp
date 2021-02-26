@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:forward page="/usuario?acao=listar" />
+<jsp:forward page="/usuario?=autenticar" />
 </body>
 </html>
