@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -24,8 +23,7 @@ public class Usuario {
 	@Column(nullable = false)
 	private String email;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "usuario_id")
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<Telefone> telefones;
 	
 	public Usuario() {

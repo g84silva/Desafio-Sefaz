@@ -67,7 +67,7 @@ public class TelefoneController extends HttpServlet {
 	}
 
 	private void excluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
-		int usuarioId = Integer.parseInt(request.getParameter(Constantes.USER_ID_COL_NAME));
+		long usuarioId = Integer.parseInt(request.getParameter(Constantes.USER_ID_COL_NAME));
 		int id = Integer.parseInt(request.getParameter(Constantes.ID_COL_NAME));
 
 		telefoneDao.excluir(id);
@@ -75,8 +75,8 @@ public class TelefoneController extends HttpServlet {
 	}
 
 	private void atualizar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
-		int usuarioId = Integer.parseInt(request.getParameter(Constantes.USER_ID_COL_NAME));
 		int id = Integer.parseInt(request.getParameter(Constantes.ID_COL_NAME));
+		long usuarioId = Integer.parseInt(request.getParameter(Constantes.USER_ID_COL_NAME));
 
 		int ddd = Integer.parseInt(request.getParameter(Constantes.DDD_COL_NAME));
 		String numero = request.getParameter(Constantes.NUMBER_COL_NAME);
@@ -94,7 +94,7 @@ public class TelefoneController extends HttpServlet {
 
 	private void editform(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
-		int usuarioId = Integer.parseInt(request.getParameter(Constantes.USER_ID_COL_NAME));
+		long usuarioId = Integer.parseInt(request.getParameter(Constantes.USER_ID_COL_NAME));
 		int id = Integer.parseInt(request.getParameter(Constantes.ID_COL_NAME));
 
 		Telefone telefoneRecuperado = telefoneDao.procurarPorId(id);
@@ -103,7 +103,7 @@ public class TelefoneController extends HttpServlet {
 		request.setAttribute("telefone", telefoneRecuperado);
 		request.setAttribute("usuario", usuarioRecuperado);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("telefone-form.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("telefones-form.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -111,13 +111,14 @@ public class TelefoneController extends HttpServlet {
 		int ddd = Integer.parseInt(request.getParameter(Constantes.DDD_COL_NAME));
 		String numero = request.getParameter(Constantes.NUMBER_COL_NAME);
 		String tipo = request.getParameter(Constantes.TYPE_COL_NAME);
-		int usuarioId = Integer.parseInt(request.getParameter(Constantes.USER_ID_COL_NAME));
+		long usuarioId = Integer.parseInt(request.getParameter(Constantes.USER_ID_COL_NAME));
 
 		Usuario usuario = usuarioDao.procurarPorId(usuarioId);
 		Telefone novoTelefone = new Telefone();
 		novoTelefone.setDdd(ddd);
 		novoTelefone.setNumero(numero);
 		novoTelefone.setTipo(tipo);
+		novoTelefone.setUsuario(usuario);
 
 		telefoneDao.inserir(novoTelefone);
 		response.sendRedirect(request.getContextPath() + "/telefone?acao=listar&usuario_id=" + usuarioId);
@@ -126,18 +127,18 @@ public class TelefoneController extends HttpServlet {
 
 	private void addform(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int usuarioId = Integer.parseInt(request.getParameter(Constantes.USER_ID_COL_NAME));
+		long usuarioId = Integer.parseInt(request.getParameter(Constantes.USER_ID_COL_NAME));
 		Usuario usuario = usuarioDao.procurarPorId(usuarioId);
 		request.setAttribute("usuario", usuario);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("telefone-form.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("telefones-form.jsp");
 		dispatcher.forward(request, response);
 
 	}
 
 	private void listar(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
-		int usuarioId = Integer.parseInt(request.getParameter(Constantes.USER_ID_COL_NAME));
+		long usuarioId = Integer.parseInt(request.getParameter(Constantes.USER_ID_COL_NAME));
 		Usuario usuario = usuarioDao.procurarPorId(usuarioId);
 
 		List<Telefone> telefones = telefoneDao.listarTelefonesPorUsuario(usuarioId);

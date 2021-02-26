@@ -89,7 +89,7 @@ public class UsuarioController extends HttpServlet {
 		long id = Integer.parseInt(request.getParameter(Constantes.ID_COL_NAME));
 		Usuario usuarioSelecionado = usuarioDao.procurarPorId(id);
 		request.setAttribute("usuario", usuarioSelecionado);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("usuarioadd-form.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("usuario-form.jsp");
 		dispatcher.forward(request, response);
 
 	}
@@ -107,7 +107,7 @@ public class UsuarioController extends HttpServlet {
 
 	private void addform(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("usuarioadd-form.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("usuario-form.jsp");
 		dispatcher.forward(request, response);
 
 	}

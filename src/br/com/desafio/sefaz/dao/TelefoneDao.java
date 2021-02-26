@@ -26,8 +26,6 @@ public class TelefoneDao {
 		} catch (Exception e) {
 			em.getTransaction().rollback();
 			System.out.println("Insert: " + e.getMessage());
-		} finally {
-			em.close();
 		}
 	}
 	
@@ -35,21 +33,19 @@ public class TelefoneDao {
 		
 		try {
 
-			Telefone telefoneAtualizado = em.find(Telefone.class, telefone.getId());
-
-			telefoneAtualizado.setDdd(telefone.getDdd());
-			telefoneAtualizado.setNumero(telefone.getNumero());
-			telefoneAtualizado.setTipo(telefone.getTipo());
+//			Telefone telefoneAtualizado = em.find(Telefone.class, telefone.getId());
+//
+//			telefoneAtualizado.setDdd(telefone.getDdd());
+//			telefoneAtualizado.setNumero(telefone.getNumero());
+//			telefoneAtualizado.setTipo(telefone.getTipo());
 			
 			em.getTransaction().begin();
-			em.merge(telefoneAtualizado);
+			em.merge(telefone);
 			em.getTransaction().commit();
 
 		} catch (Exception e) {
 			em.getTransaction().rollback();
 			System.out.println("Upadate: " + e.getMessage());
-		} finally {
-			em.close();
 		}
 	}
 	
@@ -67,8 +63,6 @@ public class TelefoneDao {
 		} catch (Exception e) {
 			em.getTransaction().rollback();
 			System.out.println("Delete: " + e.getMessage());
-		}finally {
-			em.close();
 		}
 	}
 	
@@ -77,16 +71,15 @@ public class TelefoneDao {
 		Telefone telefone = null;
 		
 		try {
+			em.getTransaction().begin();
 			
 			telefone = em.find(Telefone.class, id);
 			
+			em.getTransaction().commit();			
 		} catch (Exception e) {
 			em.getTransaction().rollback();
 			System.out.println("Search: " + e.getMessage());
-		} finally {
-			em.close();
 		}
-		
 		return telefone;
 	}
 	
@@ -96,18 +89,18 @@ public class TelefoneDao {
 		List<Telefone> telefones = null;
 		
 		try {
+			em.getTransaction().begin();
 			
 			telefones = em.createQuery("from Telefone WHERE usuario_id = :usuario_id")
 					.setParameter("usuario_id", usuarioId)
 					.getResultList();
+			
+			em.getTransaction().commit();
 				
 		} catch (Exception e) {
 			em.getTransaction().rollback();
 			System.out.println("List: " + e.getMessage());
-		} finally {
-			em.close();
 		}
-		
 		return telefones;
 	}
 }

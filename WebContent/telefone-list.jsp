@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%><html>
 <head>
 <meta charset="ISO-8859-1">
@@ -9,9 +9,11 @@
 </head>
 <body>
 	<center>
-		<h1>Lista de Usuários</h1>
+		<h1>Lista dos telefones de <c:out value='${usuario.nome}'/></h1>
 		<h2>
-			<a href="${pageContext.request.contextPath}/usuario?acao=novo">Adicionar Usuário</a> &nbsp;&nbsp;&nbsp;
+			<a href="${pageContext.request.contextPath}/telefone?acao=novo&usuario_id=<c:out value='${usuario.id}'/>">Adicionar telefone</a>
+			&nbsp;&nbsp;&nbsp;
+			<a href="${pageContext.request.contextPath}/usuario?acao=listar">Listar usuários</a>
 		</h2>
 	</center>
 	<div align="center">
@@ -19,25 +21,23 @@
 			<thead class="thead-primary">
 				<tr>
 					<th scope="col">ID</th>
-					<th scope="col">NOME</th>
-					<th scope="col">EMAIL</th>
-					<th scope="col">TELEFONES</th>
+					<th scope="col">DDD</th>
+					<th scope="col">NUMERO</th>
+					<th scope="col">TIPO</th>
 					<th scope="col">AÇÕES</th>
 				</tr>
 			</thead>
-			<c:forEach var="usuario" items="${usuarios}">
+			<c:forEach var="telefone" items="${telefones}">
 				<tbody>
 					<tr>
-						<th scope="row"><c:out value="${usuario.id}"/></th>
-						<td><c:out value="${usuario.nome}"/></td>
-						<td><c:out value="${usuario.email}"/></td>
+						<th scope="row"><c:out value="${telefone.id}"/></th>
+						<td><c:out value="${telefone.ddd}"/></td>
+						<td><c:out value="${telefone.numero}"/></td>
+						<td><c:out value="${telefone.tipo}"/></td>
 						<td>
-						<a href="${pageContext.request.contextPath}/telefone?acao=listar&usuario_id=<c:out value="${usuario.id}"/>">Telefones</a>
-						</td>
-						<td>
-						<a href="${pageContext.request.contextPath}/usuario?acao=editar&id=<c:out value='${usuario.id}'/>">Atualizar</a>
+						<a href="${pageContext.request.contextPath}/telefone?acao=editar&usuario_id=<c:out value='${usuario.id}'/>&id=<c:out value='${telefone.id}'/>">Atualizar</a>
 						&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="${pageContext.request.contextPath}/usuario?acao=excluir&id=<c:out value='${usuario.id}'/>">Excluir</a>
+						<a href="${pageContext.request.contextPath}/telefone?acao=excluir&usuario_id=<c:out value='${usuario.id}'/>&id=<c:out value='${telefone.id}'/>">Excluir</a>
 						</td>
 					</tr>
 				</tbody>
