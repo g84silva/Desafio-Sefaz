@@ -103,7 +103,7 @@ public class TelefoneController extends HttpServlet {
 		request.setAttribute("telefone", telefoneRecuperado);
 		request.setAttribute("usuario", usuarioRecuperado);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("telefones-form.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("views/telefones-form.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -131,7 +131,7 @@ public class TelefoneController extends HttpServlet {
 		Usuario usuario = usuarioDao.procurarPorId(usuarioId);
 		request.setAttribute("usuario", usuario);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("telefones-form.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("views/telefones-form.jsp");
 		dispatcher.forward(request, response);
 
 	}
@@ -145,7 +145,7 @@ public class TelefoneController extends HttpServlet {
 		request.setAttribute("telefones", telefones);
 		request.setAttribute("usuario", usuario);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("telefone-list.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("views/telefone-list.jsp");
 		dispatcher.forward(request, response);
 	}
 
