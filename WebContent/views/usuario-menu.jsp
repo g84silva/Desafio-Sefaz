@@ -8,12 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
 <nav class="nav nav-pills nav-fill">
   <a class="nav-item nav-link active" href="${pageContext.request.contextPath}/usuario?acao=listar">Lista de Usuários</a>
   <a class="nav-item nav-link" href="${pageContext.request.contextPath}/usuario?acao=novo">Adicionar Usuário</a>
-  <a class="nav-item nav-link disabled" href="${pageContext.request.contextPath}/usuario?acao=login">Sair</a>
+  <a class="nav-item nav-link disabled" href="${pageContext.request.contextPath}/usuario?acao=logout">Sair</a>
 </nav>
 
 

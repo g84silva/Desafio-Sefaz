@@ -1,23 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%><html>
+<!DOCTYPE HTML>
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<title>Desafio Sefaz</title>
+<title>Lista de Usuários</title>
+<style>
+body {
+  background-image: url('images/imagemfundo.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover; 	
+}
+</style>
 </head>
-<body>
 <jsp:include page="usuario-menu.jsp"/>
-	&nbsp;&nbsp;&nbsp;
-	<center>
-		<h1>Lista de Usuários</h1>
-	</center>
-	&nbsp;&nbsp;&nbsp;
+<body>
 	<div class="container">
   		<div align="center">
-		<table class="table table-striped table-bordered">
+			<br><br>
+				<h1>Lista de Usuários</h1>
+			&nbsp;&nbsp;&nbsp;
+		<table class="table table-striped table-bordered table-light table-hover">
 			<thead class="thead-primary">
-				<tr>
+				<tr align="center">
 					<th scope="col">ID</th>
 					<th scope="col">NOME</th>
 					<th scope="col">EMAIL</th>
@@ -27,16 +34,16 @@
 			</thead>
 			<c:forEach var="usuario" items="${usuarios}">
 				<tbody>
-					<tr>
+					<tr align="center">
 						<th scope="row"><c:out value="${usuario.id}"/></th>
 						<td><c:out value="${usuario.nome}"/></td>
 						<td><c:out value="${usuario.email}"/></td>
 						<td>
 						<a href="${pageContext.request.contextPath}/telefone?acao=listar&usuario_id=<c:out value="${usuario.id}"/>">Telefones</a>
 						</td>
-						<td>
+						<td colspan="2" align="center">
 						<a href="${pageContext.request.contextPath}/usuario?acao=editar&id=<c:out value='${usuario.id}'/>">Atualizar</a>
-						&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<a href="${pageContext.request.contextPath}/usuario?acao=excluir&id=<c:out value='${usuario.id}'/>">Excluir</a>
 						</td>
 					</tr>

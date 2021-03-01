@@ -1,17 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE HTML>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Login</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<title>Login</title>
+<style>
+body {
+  background-image: url('images/imagemfundo.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover; 	
+}
+</style>
+<!-- <link rel="stylesheet" type="text/css" href="ccs/style.css"> -->
 </head>
 <body>
-	<div class="full-bg-img" >
-	<!-- <img src="images/imgfundo.jpg" class="img-fluid"> -->
-	<div class="container col-md-8 col-md-offset-3" style="overflow: auto">
+	<div class="container">
+	<div class="container col-md-8 col-md-offset-3 align-items-center" style="overflow: auto">
 		<div align="center">
+			<br><br>
 			<h1>Desafio Sefaz</h1>
 		</div>
 		<br>
@@ -21,22 +31,25 @@
 			<input type="hidden" id="url" value="<%=request.getParameter("url") %>">
 			<div class="form-group">
 				<input type="password" class="form-control" id="username"
-					placeholder="Usuario" name="nome" required>
+					placeholder="Nome" name="nome" required>
 			</div>
 			
 			<div class="form-group">
 				<input type="password" class="form-control" id="password"
-					placeholder="Email" name="email" required>
+					placeholder="exemplo@email.com" name="email" required>
 			</div>
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			<div class="form-row" align="center" >
-				<div align="center" class="col col-7">
-					<button type="submit" class="btn btn-primary">Efetuar login</button>
-				</div >
-				<div align="center" class="col col-3">
-					<a href="${pageContext.request.contextPath}/usuario?acao=novo">Cadastrar-se</a>
-				</div>					
-			</div>
+			<table>
+				<tr colspan="2" align="center">
+					<div align="center">
+						<button type="submit" class="btn btn-primary">Efetuar login</button>
+					</div>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<div align="center">
+						<a href="${pageContext.request.contextPath}/usuario?acao=novo"><h5>Cadastrar-se<h5></a>
+					</div>
+				</tr>
+			</table>
 		</form>
 	</div>
 	</div>

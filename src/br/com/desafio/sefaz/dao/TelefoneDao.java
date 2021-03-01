@@ -32,12 +32,6 @@ public class TelefoneDao {
 	public void atualizar(Telefone telefone) {
 		
 		try {
-
-//			Telefone telefoneAtualizado = em.find(Telefone.class, telefone.getId());
-//
-//			telefoneAtualizado.setDdd(telefone.getDdd());
-//			telefoneAtualizado.setNumero(telefone.getNumero());
-//			telefoneAtualizado.setTipo(telefone.getTipo());
 			
 			em.getTransaction().begin();
 			em.merge(telefone);

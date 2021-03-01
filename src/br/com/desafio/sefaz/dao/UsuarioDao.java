@@ -32,12 +32,6 @@ public class UsuarioDao {
 		
 		try {
 
-//			Usuario usuarioAtualizado = em.find(Usuario.class, usuario.getId());
-
-//			usuarioAtualizado.setNome(usuario.getNome());
-//			usuarioAtualizado.setEmail(usuario.getEmail());
-//			usuarioAtualizado.setTelefones(usuario.getTelefones());
-
 			em.getTransaction().begin();
 			em.merge(usuario);
 			em.getTransaction().commit();

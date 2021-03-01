@@ -8,15 +8,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
-<nav class="nav nav-pills nav-fill">
-  <a class="nav-item nav-link active" href="${pageContext.request.contextPath}/usuario?acao=listar">Lista de usuários</a>
-  <a class="nav-item nav-link" href="${pageContext.request.contextPath}/telefone?acao=novo&usuario_id=<c:out value='${usuario.id}'/>">Adicionar telefone</a>
-  <a class="nav-item nav-link disabled" href="${pageContext.request.contextPath}/telefone?acao=listar&usuario_id=<c:out value='${usuario.id}'/>">Lista de telefones</a>
-</nav>
-
-
+	<nav class="nav nav-pills nav-fill">
+  		<a class="nav-item nav-link active" href="${pageContext.request.contextPath}/usuario?acao=listar">Lista de usuários</a>
+  		<a class="nav-item nav-link" href="${pageContext.request.contextPath}/telefone?acao=novo&usuario_id=<c:out value='${usuario.id}'/>">Adicionar telefone</a>
+  		<a class="nav-item nav-link disabled" href="javascript:retornar();">Voltar</a>
+	</nav>
+	<script>
+		function retornar() {
+			history.go(-1);
+		}
+	</script>
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

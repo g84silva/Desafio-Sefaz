@@ -3,8 +3,6 @@ package br.com.desafio.sefaz.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-
-import javax.servlet.FilterChain;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -41,14 +39,15 @@ public class UsuarioController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
 		String acao = request.getParameter(Constantes.ACTION_KEY);
 
 		try {
 
 			if (acao == null || acao.isEmpty()) {
 				login(request, response);
-			} else if (acao.equalsIgnoreCase(Constantes.NEW_ACTION)) {
+			} else if (acao.equalsIgnoreCase(Constantes.LIST_ACTION)) {
+				listar(request, response);
+			}else if (acao.equalsIgnoreCase(Constantes.NEW_ACTION)) {
 				addform(request, response);
 			} else if (acao.equalsIgnoreCase(Constantes.VALIDATE_ACTION)) {
 				autenticar(request, response);
@@ -60,8 +59,10 @@ public class UsuarioController extends HttpServlet {
 				atualizar(request, response);
 			} else if (acao.equalsIgnoreCase(Constantes.DELETE_ACTION)) {
 				excluir(request, response);
-			} else {
-				listar(request, response);
+			} else if (acao.equalsIgnoreCase(Constantes.LOGOUT_ACTION)) {
+				deslogar(request, response);
+			}else {
+				login(request, response);
 			}
 
 		} catch (SQLException ex) {
@@ -69,13 +70,16 @@ public class UsuarioController extends HttpServlet {
 		}
 	}
 
-	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		HttpSession sessao = request.getSession(false);
-//
-//			if(sessao != null) {
-//				sessao.invalidate();
-//			}
+	private void deslogar(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		HttpSession session = request.getSession();
+		session.removeAttribute("usuario");
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+		dispatcher.forward(request, response);
+		
+	}
 
+	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -84,8 +88,6 @@ public class UsuarioController extends HttpServlet {
 		String nome = request.getParameter(Constantes.NAME_COL_NAME);
 		String email = request.getParameter(Constantes.EMAIL_COL_NAME);
 		
-		String url = request.getParameter("url");
-//		
 		Usuario usuarioLogado = new Usuario();
 		usuarioLogado.setNome(nome);
 		usuarioLogado.setEmail(email);
@@ -96,10 +98,7 @@ public class UsuarioController extends HttpServlet {
 			HttpSession session = req.getSession();
 			session.setAttribute("usuario", usuarioLogado);
 			
-			
-			List<Usuario> usuarios = usuarioDao.listarTodos();
-			request.setAttribute("usuarios", usuarios);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("views/usuario-form.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("views/index.jsp");
 			dispatcher.forward(request, response);
 		
 		} else {
@@ -132,7 +131,7 @@ public class UsuarioController extends HttpServlet {
 		long id = Integer.parseInt(request.getParameter(Constantes.ID_COL_NAME));
 		Usuario usuarioSelecionado = usuarioDao.procurarPorId(id);
 		request.setAttribute("usuario", usuarioSelecionado);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("views/usuario-form.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("views/usuario-atualiza.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -149,6 +148,9 @@ public class UsuarioController extends HttpServlet {
 
 	private void addform(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		session.removeAttribute("usuario");
+			
 		RequestDispatcher dispatcher = request.getRequestDispatcher("views/usuario-form.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -161,19 +163,5 @@ public class UsuarioController extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 	
-	
-//	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-//		
-//		HttpServletRequest req = (HttpServletRequest) request;
-//		HttpSession session = req.getSession();
-//		Usuario usuarioLogado = (Usuario) session.getAttribute("usuario");
-//		
-//		if(usuarioLogado == null) {
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-//			dispatcher.forward(request, response);
-//			return;
-//		}
-//		chain.doFilter(request, response);
-//	}
 }
 
