@@ -49,9 +49,11 @@ public class UsuarioController extends HttpServlet {
 				listar(request, response);
 			}else if (acao.equalsIgnoreCase(Constantes.NEW_ACTION)) {
 				addform(request, response);
-			} else if (acao.equalsIgnoreCase(Constantes.VALIDATE_ACTION)) {
-				autenticar(request, response);
-			} else if (acao.equalsIgnoreCase(Constantes.INSERT_ACTION)) {
+			} 
+//			else if (acao.equalsIgnoreCase(Constantes.VALIDATE_ACTION)) {
+//				autenticar(request, response);
+//			} 
+			else if (acao.equalsIgnoreCase(Constantes.INSERT_ACTION)) {
 				inserir(request, response);
 			} else if (acao.equalsIgnoreCase(Constantes.EDIT_ACTION)) {
 				editform(request, response);
@@ -74,6 +76,8 @@ public class UsuarioController extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.removeAttribute("usuario");
 		
+		session.invalidate();
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 		dispatcher.forward(request, response);
 		
@@ -84,27 +88,27 @@ public class UsuarioController extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-	private void autenticar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nome = request.getParameter(Constantes.NAME_COL_NAME);
-		String email = request.getParameter(Constantes.EMAIL_COL_NAME);
-		
-		Usuario usuarioLogado = new Usuario();
-		usuarioLogado.setNome(nome);
-		usuarioLogado.setEmail(email);
-
-		if(usuarioDao.validar(nome, email)) {
-			
-			HttpServletRequest req = (HttpServletRequest) request;
-			HttpSession session = req.getSession();
-			session.setAttribute("usuario", usuarioLogado);
-			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("views/index.jsp");
-			dispatcher.forward(request, response);
-		
-		} else {
-			System.out.println("Não foi possível efetuar o login!");
-		}
-	}
+//	private void autenticar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		String nome = request.getParameter(Constantes.NAME_COL_NAME);
+//		String email = request.getParameter(Constantes.EMAIL_COL_NAME);
+//		
+//		Usuario usuarioLogado = new Usuario();
+//
+//		if(usuarioDao.validar(nome, email) != null) {
+//			
+//			usuarioLogado = usuarioDao.validar(nome, email);
+//			HttpServletRequest req = (HttpServletRequest) request;
+//			HttpSession session = req.getSession();
+//			session.setAttribute("usuario", usuarioLogado);
+//			
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("views/index.jsp");
+//			dispatcher.forward(request, response);
+//		
+//		} else {
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("login-falha.jsp");
+//			dispatcher.forward(request, response);
+//		}
+//	}
 
 	private void excluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
 		long id = Integer.parseInt(request.getParameter(Constantes.ID_COL_NAME));

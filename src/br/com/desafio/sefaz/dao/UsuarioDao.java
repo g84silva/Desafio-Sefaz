@@ -95,7 +95,7 @@ public class UsuarioDao {
 		return usuarios;
 	}
 
-	public boolean validar(String nome, String email) {
+	public Usuario validar(String nome, String email) {
 		Usuario usuario = null;
 		
 		try {
@@ -106,14 +106,14 @@ public class UsuarioDao {
 			em.getTransaction().commit();
 			
 			if (usuario != null && usuario.getEmail().equals(email)) {
-				return true;
+				return usuario;
 			}
 		} catch (Exception e) {
 			em.getTransaction().rollback();
 			System.out.println("List: " + e.getMessage());
 		}
 		
-		return false;
+		return usuario;
 	}
 	
 }

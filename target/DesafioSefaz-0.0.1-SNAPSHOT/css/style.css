@@ -1,0 +1,9 @@
+@charset "ISO-8859-1";
+
+body{
+	width: 100%;
+	background-image: url('images/imagemfundo.jpg');
+  	background-repeat: no-repeat;
+  	background-attachment: fixed;
+  	background-size: cover;
+}

@@ -27,10 +27,10 @@ body {
 		<br>
 		<h2>Login:</h2>
 		<br>
-		<form action="${pageContext.request.contextPath}/usuario?acao=autenticar" method="post">
+		<form action="${pageContext.request.contextPath}/Autorizar" method="post">
 			<input type="hidden" id="url" value="<%=request.getParameter("url") %>">
 			<div class="form-group">
-				<input type="password" class="form-control" id="username"
+				<input type="text" class="form-control" id="username"
 					placeholder="Nome" name="nome" required>
 			</div>
 			

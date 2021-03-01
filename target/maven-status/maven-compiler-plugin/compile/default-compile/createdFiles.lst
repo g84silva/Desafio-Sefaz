@@ -1,0 +1,10 @@
+br\com\desafio\sefaz\model\Usuario.class
+br\com\desafio\sefaz\controller\TelefoneController.class
+br\com\desafio\sefaz\filter\AutorizarUsuario.class
+br\com\desafio\sefaz\model\Telefone.class
+br\com\desafio\sefaz\dao\UsuarioDao.class
+br\com\desafio\sefaz\util\Constantes.class
+br\com\desafio\sefaz\controller\UsuarioController.class
+br\com\desafio\sefaz\dao\TelefoneDao.class
+br\com\desafio\sefaz\test\TestApp.class
+br\com\desafio\sefaz\util\ConnectionDB.class
