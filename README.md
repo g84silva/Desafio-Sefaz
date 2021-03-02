@@ -13,7 +13,7 @@
 - [MySQL][4] Workbench version: 8.0.19 CE (64-bits)
 >Banco de dados relacional utilizado na aplicação;
 - [Bootstrap][5]  version: 4.0
->Integrando JQuerry e estilizações em CSS as layout visual do sistema.
+>Integrando JQuerry e estilizações em CSS ao layout visual do sistema.
 
 ####A aplicação:
 -----
