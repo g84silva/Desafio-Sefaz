@@ -4,7 +4,7 @@
 	"http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Error</title>
+<title>Desafio Sefaz</title>
 </head>
 <body>
 	<center>

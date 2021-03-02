@@ -22,9 +22,7 @@ public class CadastroController extends HttpServlet {
  
     public CadastroController() {
         super();
-     
     }
-
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
@@ -33,8 +31,8 @@ public class CadastroController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
 		
+		HttpSession session = request.getSession();
 		String nome = request.getParameter(Constantes.NAME_COL_NAME);
 		String email = request.getParameter(Constantes.EMAIL_COL_NAME);
 		String senha = request.getParameter(Constantes.PASSWORD_COL_NAME);
@@ -48,5 +46,4 @@ public class CadastroController extends HttpServlet {
 		session.setAttribute("msg", "Usuário cadastrado com sucesso!");
 		response.sendRedirect(request.getContextPath() + "/login.jsp");
 	}
-
 }

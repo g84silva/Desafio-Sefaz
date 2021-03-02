@@ -5,7 +5,6 @@
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
 </head>
 <body>
 <nav class="nav nav-pills nav-fill">
@@ -14,9 +13,7 @@
   <a class="nav-item nav-link disabled" href="${pageContext.request.contextPath}/usuario?acao=deslogar"><h5 class="font-weight-bold">Sair</h5></a>
 </nav>
 <br>
-<div align="center" style="padding: 30px">
-<h5 class="font-weight-bold">Você está logado como: <c:out value="${sessionScope.usuario.nome}"></c:out></h5>
-</div>
+
 
 
 

@@ -6,7 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<title>Lista de Usuários</title>
+<title>Desafio Sefaz</title>
 <style>
 body {
   background-image: url('images/imagemfundo.jpg');
@@ -23,7 +23,9 @@ body {
   		<div align="center">
 			<br><br>
 				<h1>Lista de Usuários</h1>
-			&nbsp;&nbsp;&nbsp;
+			<div align="center" style="padding: 30px">
+				<h5 class="font-weight-bold">Você está logado como: <c:out value="${sessionScope.usuario.nome}"></c:out></h5>
+			</div>
 		<table class="table table-striped table-bordered table-light table-hover">
 			<thead class="thead-primary">
 				<tr align="center">
@@ -59,22 +61,6 @@ body {
 		</table>
 	</div>
 	</div>
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-
-
-
-
-
-
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

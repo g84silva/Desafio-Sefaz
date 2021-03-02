@@ -34,10 +34,8 @@ public class AutorizarUsuario implements Filter {
 		
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
-		
 		HttpSession session = req.getSession();
 		
-//		
 		if(session.getAttribute("usuario") == null) {
 	
 			RequestDispatcher dispatcher = request.getRequestDispatcher("login-falha.jsp");
@@ -46,47 +44,9 @@ public class AutorizarUsuario implements Filter {
 		} else {
 			chain.doFilter(request, response);
 		}
-				
-//		@WebFilter(urlPatterns = { "/*" })
-//		public class AutenticationFilter implements Filter {
-//
-//			@Override
-//			public void destroy() {
-//
-//			}
-//
-//			@Override
-//			public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-//					throws IOException, ServletException {
-//
-//				HttpServletRequest req = (HttpServletRequest) request;
-//				HttpSession session = req.getSession();
-//
-//				User loggedUser = (User) session.getAttribute("loggedUser");
-//
-//				String url = req.getServletPath();
-//
-//				if (!url.equalsIgnoreCase("index.jsf") && loggedUser == null) {
-//					RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsf");
-//					dispatcher.forward(request, response);
-//					return;
-//				} else {
-//					chain.doFilter(request, response);
-//				}
-//			}
-//
-//			@Override
-//			public void init(FilterConfig filterConfig) throws ServletException {
-//				JPAUtil.getEntityManager();
-//
-//			}
-
-		
 	}
-
 
 	public void init(FilterConfig fConfig) throws ServletException {
 			
 	}
-
 }

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Alerta!</title>
+<title>Desafio Sefaz</title>
 </head>
 <body>
 	<h1>Usuário não autenticado!</h1>

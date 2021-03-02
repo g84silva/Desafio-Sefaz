@@ -96,6 +96,7 @@ public class UsuarioDao {
 	}
 
 	public Usuario validar(String email, String senha) {
+		
 		Usuario usuario = null;
 		
 		try {

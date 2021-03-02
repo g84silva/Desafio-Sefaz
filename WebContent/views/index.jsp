@@ -6,7 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<title>Boas vindas !</title>
+<title>Desafio Sefaz</title>
 <style>
 body {
   background-image: url('images/imagemfundo.jpg');

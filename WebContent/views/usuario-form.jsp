@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Cadastro de Usuário</title>
+<title>Desafio Sefaz</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <style>
 body {
@@ -27,16 +27,17 @@ body {
 			<br>
 			<div class="form-col">
 				<div class="col col-6">
-					<input type="text" class="form-control" placeholder="Nome" name="nome" id="usuNome" required />*
+					<input type="text" class="form-control" placeholder="Nome" name="nome" id="usuNome" required />
 				</div>
 				<br>
 				<div class="col col-6">
 					<input type="email" class="form-control" placeholder="exemplo@email.com" name="email" id="usuEmail"
-						required />*
+						required />
 				</div>
+				<br>
 				<div class="col col-6">
 					<input type="password" class="form-control" placeholder="Senha" name="senha" id="usuSenha"
-						required />*
+						required />
 				</div>
 			</div>
 			<br>
@@ -45,8 +46,6 @@ body {
 			</div>
 		</form>
 	</div>			
-	
-
 	
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

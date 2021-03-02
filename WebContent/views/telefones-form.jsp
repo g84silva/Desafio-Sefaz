@@ -5,28 +5,9 @@
 <html>
 <head>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
-  	<script type="text/javascript">
-  	JQuery("#numero")
-    .mask("99999-9999")
-    .focusout(function (event) {
-        let target, phone, element;
-        target = (event.currentTarget) ? 
-                 event.currentTarget : 
-                 event.srcElement;
-        phone = target.value.replace(/\D/g, '');
-        element = jQuery(target);
-        element.unmask();
-        if (phone.length > 10) {
-            element.mask("99999-9999");
-        } else {
-            element.mask("(99) 9999-99999");
-        }
-    });
-	</script>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<title>Atualizar telefone</title>
+<title>Desafio Sefaz</title>
 <style>
 body {
   background-image: url('images/imagemfundo.jpg');
@@ -152,7 +133,7 @@ body {
 					<br>
 					<div class="col col-6">
 						<input type="text" class="form-control" placeholder="Número" name="numero" id="numero" required
-							 maxlength="10" value="<c:out value="${telefone.numero}"/>"/>
+							 maxlength="10"  value="<c:out value="${telefone.numero}"/>"/>
 					</div>
 					<br>
 					<div class="col col-6">

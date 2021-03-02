@@ -32,13 +32,13 @@ public class UsuarioController extends HttpServlet {
 		super.init();
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		doGet(request, response);
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String acao = request.getParameter(Constantes.ACTION_KEY);
 
 		try {
@@ -65,6 +65,7 @@ public class UsuarioController extends HttpServlet {
 	}
 
 	private void deslogar(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		
 		HttpSession session = request.getSession();
 		session.removeAttribute("usuario");
 		
@@ -72,15 +73,16 @@ public class UsuarioController extends HttpServlet {
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 		dispatcher.forward(request, response);
-		
 	}
 
 	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 		dispatcher.forward(request, response);
 	}
 
 	private void excluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+		
 		long id = Integer.parseInt(request.getParameter(Constantes.ID_COL_NAME));
 		usuarioDao.excluir(id);
 		HttpSession session = request.getSession();
@@ -93,6 +95,7 @@ public class UsuarioController extends HttpServlet {
 	}
 
 	private void atualizar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+		
 		long id = Integer.parseInt(request.getParameter(Constantes.ID_COL_NAME));
 		String nome = request.getParameter(Constantes.NAME_COL_NAME);
 		String email = request.getParameter(Constantes.EMAIL_COL_NAME);
@@ -108,8 +111,8 @@ public class UsuarioController extends HttpServlet {
 		response.sendRedirect(request.getContextPath() + "/usuario?acao=listar");
 	}
 
-	private void editform(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, ServletException, IOException {
+	private void editform(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+		
 		long id = Integer.parseInt(request.getParameter(Constantes.ID_COL_NAME));
 		Usuario usuarioSelecionado = usuarioDao.procurarPorId(id);
 		request.setAttribute("usuario", usuarioSelecionado);
@@ -117,13 +120,12 @@ public class UsuarioController extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-	private void listar(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, ServletException, IOException {
+	private void listar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+		
 		List<Usuario> usuarios = usuarioDao.listarTodos();
 		request.setAttribute("usuarios", usuarios);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("views/usuario-list.jsp");
 		dispatcher.forward(request, response);
 	}
-	
 }
 

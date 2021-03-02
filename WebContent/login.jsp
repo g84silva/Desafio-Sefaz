@@ -6,7 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<title>Login</title>
+<title>Desafio Sefaz</title>
 <style>
 body {
   background-image: url('images/imagemfundo.jpg');
@@ -15,7 +15,6 @@ body {
   background-size: cover; 	
 }
 </style>
-<!-- <link rel="stylesheet" type="text/css" href="ccs/style.css"> -->
 </head>
 <body>
 	<div class="container">
@@ -28,7 +27,7 @@ body {
 		<h2>Login:</h2>
 		<br>
 		<form action="${pageContext.request.contextPath}/Autorizar" method="post">
-			<input type="hidden" id="url" value="<%=request.getParameter("url") %>">
+			
 			<div class="form-group">
 				<input type="email" class="form-control" id="userEmail"
 					placeholder="exemplo@email.com" name="email" required>
@@ -38,9 +37,9 @@ body {
 				<input type="password" class="form-control" id="userSenha"
 					placeholder="senha" name="senha" required>
 			</div>
-			&nbsp;&nbsp;&nbsp;&nbsp;
+			
 			<c:if test="${sessionScope.msg ne null}">
-			<p class="text-danger"><c:out value="${sessionScope.msg}"></p></c:out>
+			<p class="text-danger font-weight-bold"><c:out value="${sessionScope.msg}"></p></c:out>
 			<c:set var="msg" value="" scope="session" />
 
 			</c:if>
