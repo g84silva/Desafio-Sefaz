@@ -39,12 +39,10 @@ public class AutorizarUsuario implements Filter {
 		
 //		
 		if(session.getAttribute("usuario") == null) {
-
+	
+			RequestDispatcher dispatcher = request.getRequestDispatcher("login-falha.jsp");
+			dispatcher.forward(request, response);
 			
-				RequestDispatcher dispatcher = request.getRequestDispatcher("login-falha.jsp");
-				dispatcher.forward(request, response);
-			
-
 		} else {
 			chain.doFilter(request, response);
 		}

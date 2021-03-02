@@ -19,10 +19,7 @@ body {
 <jsp:include page="usuario-menu.jsp"/>
 <body>
 
-	<div class="container">
-	<h1>usuário:</h1>
-	<c:out value="${sessionScope.usuario.nome}"></c:out>
-	
+	<div class="container">	
   		<div align="center">
 			<br><br>
 				<h1>Lista de Usuários</h1>

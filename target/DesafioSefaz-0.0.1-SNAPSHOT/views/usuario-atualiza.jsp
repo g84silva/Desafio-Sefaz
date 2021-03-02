@@ -40,35 +40,20 @@ body {
 						<input type="email" class="form-control" placeholder="exemplo@email.com" name="email" id="usuEmail" required
 						value="<c:out value="${usuario.email}"/>" />
 				</div>
+				<div class="col col-6">
+						<input type="password" class="form-control" placeholder="Senha" name="senha" id="usuSenha" required
+						value="<c:out value="${usuario.senha}"/>" />
+				</div>
 			</div>
 			<br>
 			<div>
-					<button type="submit" value="Atualizar" class="btn btn-primary"
-						data-toggle="modal" data-target="#modalAtualizar">Atualizar</button>
+					<button type="submit" value="Atualizar" class="btn btn-primary">Atualizar</button>
 			</div>
 		</form>
 		</div>
 	</div>
 
-	<div class="modal fade" tabindex="-1" id="modalAtualizar">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title">Desafio Sefaz</h5>
-					<button type="button" class="btn-close" data-dismiss="modal"
-						aria-label="Close">
-						<span>&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<p>Usuário atualizado!</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

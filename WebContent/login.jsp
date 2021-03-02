@@ -30,15 +30,20 @@ body {
 		<form action="${pageContext.request.contextPath}/Autorizar" method="post">
 			<input type="hidden" id="url" value="<%=request.getParameter("url") %>">
 			<div class="form-group">
-				<input type="text" class="form-control" id="username"
-					placeholder="Nome" name="nome" required>
+				<input type="email" class="form-control" id="userEmail"
+					placeholder="exemplo@email.com" name="email" required>
 			</div>
 			
 			<div class="form-group">
-				<input type="password" class="form-control" id="password"
-					placeholder="exemplo@email.com" name="email" required>
+				<input type="password" class="form-control" id="userSenha"
+					placeholder="senha" name="senha" required>
 			</div>
 			&nbsp;&nbsp;&nbsp;&nbsp;
+			<c:if test="${sessionScope.msg ne null}">
+			<p class="text-danger"><c:out value="${sessionScope.msg}"></p></c:out>
+			<c:set var="msg" value="" scope="session" />
+
+			</c:if>
 			<table>
 				<tr colspan="2" align="center">
 					<div align="center">
@@ -46,7 +51,7 @@ body {
 					</div>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<div align="center">
-						<a href="${pageContext.request.contextPath}/usuario?acao=novo"><h5>Cadastrar-se<h5></a>
+						<a href="${pageContext.request.contextPath}/Cadastrar"><h5>Cadastrar-se<h5></a>
 					</div>
 				</tr>
 			</table>

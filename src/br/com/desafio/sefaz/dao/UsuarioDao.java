@@ -95,25 +95,28 @@ public class UsuarioDao {
 		return usuarios;
 	}
 
-	public Usuario validar(String nome, String email) {
+	public Usuario validar(String email, String senha) {
 		Usuario usuario = null;
 		
 		try {
 			em.getTransaction().begin();
-			usuario = (Usuario) em.createQuery("FROM Usuario WHERE nome = :nome")
-					.setParameter("nome", nome)
+			usuario = (Usuario) em.createQuery("FROM Usuario WHERE email = :email")
+					.setParameter("email", email)
 					.getSingleResult();
 			em.getTransaction().commit();
 			
-			if (usuario != null && usuario.getEmail().equals(email)) {
+			if (usuario != null && usuario.getSenha().equals(senha)) {
 				return usuario;
+			} else {
+				return null;
 			}
 		} catch (Exception e) {
 			em.getTransaction().rollback();
 			System.out.println("List: " + e.getMessage());
+			return null;
 		}
 		
-		return usuario;
+		
 	}
 	
 }

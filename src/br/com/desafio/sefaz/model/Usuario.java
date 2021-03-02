@@ -23,6 +23,9 @@ public class Usuario {
 	@Column(nullable = false)
 	private String email;
 	
+	@Column(nullable = false)
+	private String senha;
+	
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<Telefone> telefones;
 	
@@ -52,6 +55,14 @@ public class Usuario {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	public List<Telefone> getTelefones() {

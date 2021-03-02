@@ -27,7 +27,7 @@ body {
 		<br>
 		<h2>Login:</h2>
 		<br>
-		<form action="${pageContext.request.contextPath}/usuario?acao=autenticar" method="post">
+		<form action="${pageContext.request.contextPath}/Autorizar" method="post">
 			<input type="hidden" id="url" value="<%=request.getParameter("url") %>">
 			<div class="form-group">
 				<input type="text" class="form-control" id="username"
@@ -46,7 +46,7 @@ body {
 					</div>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<div align="center">
-						<a href="${pageContext.request.contextPath}/usuario?acao=novo"><h5>Cadastrar-se<h5></a>
+						<a href="${pageContext.request.contextPath}/Cadastrar"><h5>Cadastrar-se<h5></a>
 					</div>
 				</tr>
 			</table>

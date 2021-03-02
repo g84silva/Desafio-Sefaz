@@ -10,9 +10,14 @@
 <body>
 <nav class="nav nav-pills nav-fill">
   <a class="nav-item nav-link active" href="${pageContext.request.contextPath}/usuario?acao=listar">Lista de Usuários</a>
-  <a class="nav-item nav-link" href="${pageContext.request.contextPath}/usuario?acao=novo">Adicionar Usuário</a>
-  <a class="nav-item nav-link disabled" href="${pageContext.request.contextPath}/usuario?acao=logout">Sair</a>
+  
+  <a class="nav-item nav-link disabled" href="${pageContext.request.contextPath}/usuario?acao=deslogar"><h5 class="font-weight-bold">Sair</h5></a>
 </nav>
+<br>
+<div align="center" style="padding: 30px">
+<h5 class="font-weight-bold">Você está logado como: <c:out value="${sessionScope.usuario.nome}"></c:out></h5>
+</div>
+
 
 
 

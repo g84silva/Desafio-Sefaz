@@ -47,14 +47,6 @@ public class UsuarioController extends HttpServlet {
 				login(request, response);
 			} else if (acao.equalsIgnoreCase(Constantes.LIST_ACTION)) {
 				listar(request, response);
-			}else if (acao.equalsIgnoreCase(Constantes.NEW_ACTION)) {
-				addform(request, response);
-			} 
-//			else if (acao.equalsIgnoreCase(Constantes.VALIDATE_ACTION)) {
-//				autenticar(request, response);
-//			} 
-			else if (acao.equalsIgnoreCase(Constantes.INSERT_ACTION)) {
-				inserir(request, response);
 			} else if (acao.equalsIgnoreCase(Constantes.EDIT_ACTION)) {
 				editform(request, response);
 			} else if (acao.equalsIgnoreCase(Constantes.UPDATE_ACTION)) {
@@ -88,43 +80,29 @@ public class UsuarioController extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-//	private void autenticar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		String nome = request.getParameter(Constantes.NAME_COL_NAME);
-//		String email = request.getParameter(Constantes.EMAIL_COL_NAME);
-//		
-//		Usuario usuarioLogado = new Usuario();
-//
-//		if(usuarioDao.validar(nome, email) != null) {
-//			
-//			usuarioLogado = usuarioDao.validar(nome, email);
-//			HttpServletRequest req = (HttpServletRequest) request;
-//			HttpSession session = req.getSession();
-//			session.setAttribute("usuario", usuarioLogado);
-//			
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("views/index.jsp");
-//			dispatcher.forward(request, response);
-//		
-//		} else {
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("login-falha.jsp");
-//			dispatcher.forward(request, response);
-//		}
-//	}
-
-	private void excluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+	private void excluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
 		long id = Integer.parseInt(request.getParameter(Constantes.ID_COL_NAME));
 		usuarioDao.excluir(id);
-		response.sendRedirect(request.getContextPath() + "/usuario?acao=listar");
+		HttpSession session = request.getSession();
+		session.removeAttribute("usuario");
+		
+		session.invalidate();
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	private void atualizar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
 		long id = Integer.parseInt(request.getParameter(Constantes.ID_COL_NAME));
 		String nome = request.getParameter(Constantes.NAME_COL_NAME);
 		String email = request.getParameter(Constantes.EMAIL_COL_NAME);
+		String senha = request.getParameter(Constantes.PASSWORD_COL_NAME);
 
 		Usuario usuario = new Usuario();
 		usuario.setId(id);
 		usuario.setNome(nome);
 		usuario.setEmail(email);
+		usuario.setSenha(senha);
 
 		usuarioDao.atualizar(usuario);
 		response.sendRedirect(request.getContextPath() + "/usuario?acao=listar");
@@ -136,26 +114,6 @@ public class UsuarioController extends HttpServlet {
 		Usuario usuarioSelecionado = usuarioDao.procurarPorId(id);
 		request.setAttribute("usuario", usuarioSelecionado);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("views/usuario-atualiza.jsp");
-		dispatcher.forward(request, response);
-	}
-
-	private void inserir(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
-		String nome = request.getParameter(Constantes.NAME_COL_NAME);
-		String email = request.getParameter(Constantes.EMAIL_COL_NAME);
-		Usuario usuarioNovo = new Usuario();
-		usuarioNovo.setNome(nome);
-		usuarioNovo.setEmail(email);
-
-		usuarioDao.inserir(usuarioNovo);
-		response.sendRedirect(request.getContextPath() + "/usuario?acao=listar");
-	}
-
-	private void addform(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		session.removeAttribute("usuario");
-			
-		RequestDispatcher dispatcher = request.getRequestDispatcher("views/usuario-form.jsp");
 		dispatcher.forward(request, response);
 	}
 

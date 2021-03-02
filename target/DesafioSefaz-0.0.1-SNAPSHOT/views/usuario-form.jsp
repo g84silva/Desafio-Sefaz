@@ -17,9 +17,9 @@ body {
 </style>
 </head>
 <body>
-<jsp:include page="usuario-menu-cadastro.jsp"/>
+	<div align="center"><a href="${pageContext.request.contextPath}/">Home</a></div>
 	<div class="container" align="center">
-		<form action="${pageContext.request.contextPath}/usuario?acao=inserir" method="post">
+		<form action="${pageContext.request.contextPath}/Cadastrar" method="post">
 			<caption>
 				<br><br>
 				<h2>Cadastro de usuário</h2>
@@ -27,42 +27,26 @@ body {
 			<br>
 			<div class="form-col">
 				<div class="col col-6">
-					<input type="text" class="form-control" placeholder="Nome" name="nome" id="usuNome" required
-						value="<c:out value="${usuario.nome}"/>" />
+					<input type="text" class="form-control" placeholder="Nome" name="nome" id="usuNome" required />*
 				</div>
 				<br>
 				<div class="col col-6">
 					<input type="email" class="form-control" placeholder="exemplo@email.com" name="email" id="usuEmail"
-						required value="<c:out value="${usuario.email}"/>" />
+						required />*
+				</div>
+				<div class="col col-6">
+					<input type="password" class="form-control" placeholder="Senha" name="senha" id="usuSenha"
+						required />*
 				</div>
 			</div>
 			<br>
 			<div>
-				<button type="submit" value="Salvar" class="btn btn-primary" data-toggle="modal" 
-				data-target="#modalCadastro">Salvar</button>
+				<button type="submit" value="Salvar" class="btn btn-primary">Salvar</button>
 			</div>
 		</form>
 	</div>			
 	
-	<div class="modal fade" tabindex="-1" id="modalCadastro">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title">Desafio Sefaz</h5>
-					<button type="button" class="btn-close" data-dismiss="modal"
-						aria-label="Close">
-						<span>&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<p>Usuário cadastrado!</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-				</div>
-			</div>
-		</div>
-	</div>
+
 	
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

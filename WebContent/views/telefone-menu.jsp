@@ -10,7 +10,9 @@
 <body>
 	<nav class="nav nav-pills nav-fill">
   		<a class="nav-item nav-link active" href="${pageContext.request.contextPath}/usuario?acao=listar">Lista de usuários</a>
+  		<c:if test="${usuario.id eq sessionScope.usuario.id}">
   		<a class="nav-item nav-link" href="${pageContext.request.contextPath}/telefone?acao=novo&usuario_id=<c:out value='${usuario.id}'/>">Adicionar telefone</a>
+  		</c:if>
   		<a class="nav-item nav-link disabled" href="javascript:retornar();">Voltar</a>
 	</nav>
 	<script>

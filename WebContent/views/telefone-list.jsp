@@ -44,9 +44,11 @@ body {
 						<td><c:out value="${telefone.numero}"/></td>
 						<td><c:out value="${telefone.tipo}"/></td>
 						<td colspan="2" align="center">
+						<c:if test="${usuario.id eq sessionScope.usuario.id}">
 						<a href="${pageContext.request.contextPath}/telefone?acao=editar&usuario_id=<c:out value='${usuario.id}'/>&id=<c:out value='${telefone.id}'/>">Atualizar</a>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<a href="${pageContext.request.contextPath}/telefone?acao=excluir&usuario_id=<c:out value='${usuario.id}'/>&id=<c:out value='${telefone.id}'/>">Excluir</a>
+						</c:if>
 						</td>
 					</tr>
 				</tbody>

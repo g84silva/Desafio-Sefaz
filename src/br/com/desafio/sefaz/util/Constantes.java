@@ -15,8 +15,8 @@ public class Constantes {
 	public static final String ID_COL_NAME = "id";
 	public static final String NAME_COL_NAME = "nome";
 	public static final String EMAIL_COL_NAME = "email";
+	public static final String PASSWORD_COL_NAME = "senha";
 	public static final String PHONE_COL_NAME = "telefone";
-
 	
 	public static final String USER_ID_COL_NAME = "usuario_id";
 	public static final String DDD_COL_NAME = "ddd";
